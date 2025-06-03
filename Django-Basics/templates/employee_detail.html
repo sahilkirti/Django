@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Basics</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <a href="#">
+            <img class="rounded-t-lg" src="{{employee.photo.url}}" alt="Employee photo" />
+        </a>
+        <div class="p-5">
+            <a href="#">
+                <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{employee.first_name}} {{employee.last_name}}</h5>
+            </a>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{employee.designation}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{employee.email_address}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{employee.phone_number}}</p>
+
+            <a href="{% url 'home'%}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Go back
+            </a>
+        </div>
+    </div>
+</body>
+</html>

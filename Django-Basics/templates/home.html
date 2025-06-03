@@ -13,5 +13,8 @@
     <h1 class="text-3xl text-red-600 font-bold underline text-clifford">
         Hello world!
     </h1>
+    {% for i in employees %}
+        <a href="{% url 'employee_detail' i.id %}">{{i}}</a>
+    {% endfor %}
 </body>
 </html>
