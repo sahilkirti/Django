@@ -7,7 +7,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from django.http import Http404
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, viewsets
+from django.shortcuts import render, get_object_or_404
 
 @api_view(['GET','POST'])
 def studentView(request):
@@ -47,6 +48,32 @@ def studentDetailView(request, pk):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+class EmployeeViewset(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+# class EmployeeViewset(viewsets.ViewSet):
+#     def list(self, request):
+#         queryset = Employee.objects.all()
+#         serializer = EmployeeSerializer(queryset, many = True)
+#         return Response(serializer.data)
+    
+#     def create(self, request):
+#         serializer = EmployeeSerializer(data = request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status = status.HTTP_201_CREATED)
+#         return Response(serializer.errors)
+ 
+#     def retrieve(self, request, pk = None):
+#         employee = get_object_or_404(Employee, pk = pk)
+#         serializer = EmployeeSerializer(employee)
+#         return Response(serializer.data, status = status.HTTP_200_OK)
+    
+
+
+    
+'''   
 class Employees(generics.ListAPIView, generics.CreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -55,7 +82,7 @@ class EmployeeDetail(generics.RetrieveUpadateDestroyView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     lookup_field = 'pk'
-
+'''
 # class EmployeeDetail(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
 #     queryset = Employee.objects.all()
 #     serializer_class = EmployeeSerializer
